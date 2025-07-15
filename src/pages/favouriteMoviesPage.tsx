@@ -9,6 +9,9 @@ import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
+import RemoveFromFavouritesIcon from "../components/cardIcons/removeFromFavourites";
+import WriteReviewIcon from "../components/cardIcons/writeReview";
+
 
 const titleFiltering = {
   name: "title",
@@ -60,10 +63,17 @@ const FavouriteMoviesPage: React.FC = () => {
 
   return (
     <>
-      <PageTemplate
+       <PageTemplate
         title="Favourite Movies"
         movies={displayedMovies}
-        selectFavourite={toDo}
+        action={(movie) => {
+          return (
+            <>
+              <RemoveFromFavouritesIcon {...movie} />
+              <WriteReviewIcon {...movie} />
+            </>
+          );
+        }}
       />
       <MovieFilterUI
         onFilterValuesChange={changeFilterValues}
