@@ -7,6 +7,8 @@ import AddToMustWatchIcon from '../components/cardIcons/addToMustWatch';
 import { DiscoverMovies } from "../types/interfaces";
 
 
+// Implemented Caching excercise Three as part of exercise One
+
 const UpcomingPage: React.FC = () => {
   const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("upcoming", getUpcoming);
 
