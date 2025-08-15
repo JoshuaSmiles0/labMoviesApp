@@ -3,7 +3,7 @@ import { BaseMovieProps} from "../types/interfaces";
 import { getUpcoming } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import { useQuery } from "react-query";
-import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
+import AddToMustWatchIcon from '../components/cardIcons/addToMustWatch';
 import { DiscoverMovies } from "../types/interfaces";
 
 
@@ -25,7 +25,7 @@ const UpcomingPage: React.FC = () => {
       title='Upcoming Movies'
       movies={movies}
        action={(movie: BaseMovieProps) => {
-          return <AddToFavouritesIcon {...movie} />
+          return <AddToMustWatchIcon {...movie} />
         }}
     />
   );
