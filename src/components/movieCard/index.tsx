@@ -1,4 +1,4 @@
-import React, {MouseEvent, useContext} from "react";
+import React, {useContext} from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -15,6 +15,7 @@ import { BaseMovieProps } from "../../types/interfaces";
 import { Link } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import {MoviesContext} from "../../contexts/moviesContext";
+import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 
 const styles = {
   card: { maxWidth: 345 },
@@ -30,9 +31,10 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({movie,action}) => {
-  const { favourites, addToFavourites } = useContext(MoviesContext);//NEW
+  const { favourites, mustWatch } = useContext(MoviesContext);
 
-const isFavourite = favourites.find((id) => id === movie.id)? true : false;//NEW
+const isFavourite = favourites.find((id) => id === movie.id)? true : false;
+const isMustWatch = mustWatch.find((id) => id === movie.id)? true: false;
  
 
 
@@ -40,11 +42,16 @@ const isFavourite = favourites.find((id) => id === movie.id)? true : false;//NEW
       <Card sx={styles.card}>
       <CardHeader
         avatar={
-          isFavourite ? (   //CHANGED
+          isFavourite ? (  
             <Avatar sx={styles.avatar}>
               <FavoriteIcon />
             </Avatar>
-          ) : null
+          ) :
+          isMustWatch ? (
+             <Avatar sx={styles.avatar}>
+              <PlaylistAddCheckIcon />
+            </Avatar>
+          ): null
         }
         title={
           <Typography variant="h5" component="p">
